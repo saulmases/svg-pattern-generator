@@ -1,4 +1,5 @@
-import type React from "react"
+import * as React from "react";
+import ReactDOMServer from "react-dom/server";
 
 export type ShapeType =
   | "line"
@@ -28,6 +29,7 @@ interface SVGPatternProps {
   shape: ShapeType
   shapeSize?: number
   customPath?: string
+  getRawSVG?: (svg: string) => void
 }
 
 export const SVGPattern: React.FC<SVGPatternProps> = ({
@@ -40,6 +42,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
   shape = "line",
   shapeSize = 5,
   customPath = "",
+  getRawSVG,
 }) => {
   const renderShape = () => {
     switch (shape) {
@@ -270,25 +273,55 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
     }
   }
 
+  const svgContent = (
+    <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern
+          id={patternId}
+          x="0"
+          y="0"
+          width={size}
+          height={size}
+          patternUnits="userSpaceOnUse"
+          patternTransform={`rotate(${rotation})`}
+        >
+          {renderShape()}
+        </pattern>
+      </defs>
+      <rect x="0" y="0" width="100%" height="100%" fill={`url(#${patternId})`} />
+    </svg>
+  )
+
+  // Generate raw SVG code
+  React.useEffect(() => {
+    if (getRawSVG) {
+      const svgMarkup = ReactDOMServer.renderToStaticMarkup(
+        <svg className={`w-full h-full ${backgroundColor}`} xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern
+              id={patternId}
+              x="0"
+              y="0"
+              width={size}
+              height={size}
+              patternUnits="userSpaceOnUse"
+              patternTransform={`rotate(${rotation})`}
+            >
+              {renderShape()}
+            </pattern>
+          </defs>
+          <rect x="0" y="0" width="100%" height="100%" fill={`url(#${patternId})`} />
+        </svg>
+      );
+
+      getRawSVG(svgMarkup); // Pass the stringified SVG
+    }
+  }, [backgroundColor, shapeColor, size, strokeWidth, rotation, shape, shapeSize, customPath, patternId, getRawSVG]);
+
+
   return (
     <div className={`w-full h-full ${backgroundColor}`}>
-      <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern
-            id={patternId}
-            x="0"
-            y="0"
-            width={size}
-            height={size}
-            patternUnits="userSpaceOnUse"
-            patternTransform={`rotate(${rotation})`}
-          >
-            {renderShape()}
-          </pattern>
-        </defs>
-        <rect x="0" y="0" width="100%" height="100%" fill={`url(#${patternId})`} />
-      </svg>
+      {svgContent}
     </div>
   )
 }
-

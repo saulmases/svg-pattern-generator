@@ -31,6 +31,7 @@ import {
 import { ThemeToggle } from "@/components/theme-toggle";
 import { backgroundColors, shapeColors } from "@/lib/utils";
 import Link from "next/link";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const shapeOptions = [
   { value: "line", label: "Line", Icon: Slash },
@@ -63,6 +64,8 @@ export default function Home() {
     shapeColor: "text-border",
     customPath: "M0,0 L10,10 L20,0 Z",
   })
+
+  const [rawSVG, setRawSVG] = useState("")
 
   const patternSize = useSliderWithInput({
     minValue: 1,
@@ -138,28 +141,18 @@ export default function Home() {
   };
 
   const copyToClipboard = () => {
-    if (codeRef.current) {
+    const activeTabContent = document.querySelector('[role="tabpanel"]:not([hidden]) textarea')
+    if (activeTabContent instanceof HTMLTextAreaElement) {
       navigator.clipboard
-        .writeText(codeRef.current.value)
+        .writeText(activeTabContent.value)
         .then(() => {
           setCopyButtonText("Copied");
           setTimeout(() => {
             setCopyButtonText("Copy");
           }, 2000);
         })
-        /* .then(() => {
-          toast({
-            title: "Copied to clipboard",
-            description: "The code has been copied to your clipboard.",
-          })
-        }) */
         .catch((err) => {
           console.error("Failed to copy text: ", err)
-          /* toast({
-            title: "Failed to copy",
-            description: "An error occurred while copying the code.",
-            variant: "destructive",
-          }) */
         })
     }
   }
@@ -412,11 +405,33 @@ export default function Home() {
             size={patternSize.sliderValue[0]}
             rotation={rotation.sliderValue[0]}
             strokeWidth={strokeWidth.sliderValue[0]}
+            getRawSVG={setRawSVG}
           />
         </div>
-        <div className="w-80 absolute right-6 bottom-6 z-20 bg-background border p-6 space-y-3">
-          <Textarea ref={codeRef} value={generateCode()} readOnly className="font-mono text-xs" rows={12} />
-          <div className="w-full flex items-center gap-3">
+        <div className="w-80 absolute right-6 bottom-6 z-20 bg-background border">
+          <Tabs defaultValue="raw" className="w-full">
+            <TabsList className="w-full h-auto rounded-none border-b border-border bg-transparent p-0">
+              <TabsTrigger
+                value="raw"
+                className="w-full relative flex-col rounded-none px-0 py-4 text-sm after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:after:bg-primary"
+              >
+                Raw SVG
+              </TabsTrigger>
+              <TabsTrigger
+                value="component"
+                className="w-full relative flex-col rounded-none px-0 py-4 text-sm after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:after:bg-primary"
+              >
+                Component
+              </TabsTrigger>
+            </TabsList>
+            <TabsContent value="raw" className="p-6 pb-3 mt-0">
+              <Textarea value={rawSVG} readOnly className="font-mono text-xs" rows={12} />
+            </TabsContent>
+            <TabsContent value="component" className="p-6 pb-3 mt-0">
+              <Textarea ref={codeRef} value={generateCode()} readOnly className="font-mono text-xs" rows={12} />
+            </TabsContent>
+          </Tabs>
+          <div className="w-full flex items-center gap-3 p-6 pt-0">
             <Button className="w-full" variant="default" onClick={copyToClipboard}>{copyButtonText}</Button>
             <Button className="w-full" variant="outline" onClick={resetControls}>Reset</Button>
           </div>
@@ -426,4 +441,3 @@ export default function Home() {
     </main>
   )
 }
-

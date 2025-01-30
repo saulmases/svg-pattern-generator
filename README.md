@@ -2,7 +2,7 @@
 
 Generate SVG patterns. Easy setup and compatible with TailwindCSS.
 
-[svgpatterns.vercel.app](https://svgpatterns.vercel.app)
+[svg-pattern-generator.vercel.app](https://svg-pattern-generator.vercel.app)
 
 ## Tools
 

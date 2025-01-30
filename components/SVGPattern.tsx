@@ -105,7 +105,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
         )
       case "wave":
         const waveAmplitude = shapeSize / 2
-        const waveFrequency = (Math.PI * 2) / size
+        // const waveFrequency = (Math.PI * 2) / size
         return (
           <path
             d={`M0 ${size / 2} Q${size / 4} ${size / 2 - waveAmplitude}, ${size / 2} ${size / 2} T${size} ${size / 2}`}
@@ -138,7 +138,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
         }
         return <path d={spiralPath} className={`stroke-current ${shapeColor} fill-none`} strokeWidth={strokeWidth} />
       case "arrow":
-        const arrowShaftWidth = shapeSize * 0.2
+        // const arrowShaftWidth = shapeSize * 0.2
         const arrowHeadWidth = shapeSize * 0.6
         const arrowHeadHeight = shapeSize * 0.6
         return (
@@ -166,7 +166,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
               stroke="currentColor"
               fill="none"
               transform={`scale(${shapeSize / size})`}
-            //transformOrigin="center"
+            // transformOrigin="center"
             />
           </svg>
         )

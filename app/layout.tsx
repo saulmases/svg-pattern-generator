@@ -12,6 +12,20 @@ const Font = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "SVG Pattern Generator",
   description: "Generate SVG patterns. Easy setup and compatible with TailwindCSS.",
+  icons: {
+    icon: [
+      {
+        media: '(prefers-color-scheme: light)',
+        url: '/svg-pattern-generator-logo-light.svg',
+        href: '/svg-pattern-generator-logo-light.svg',
+      },
+      {
+        media: '(prefers-color-scheme: dark)',
+        url: '/svg-pattern-generator-logo-dark.svg',
+        href: '/svg-pattern-generator-logo-dark.svg',
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

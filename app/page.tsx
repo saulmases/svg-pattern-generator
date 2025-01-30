@@ -168,9 +168,9 @@ export default function Home() {
   }
 
   return (
-    <main className="w-full h-dvh bg-border grid grid-cols-12 gap-px overflow-hidden">
+    <main className="w-full h-dvh bg-border grid grid-cols-1 lg:grid-cols-12 gap-px overflow-hidden">
 
-      <div className="w-full h-full bg-background p-6 space-y-8 relative overflow-y-auto col-span-6 lg:col-span-7 xl:col-span-6 2xl:col-span-6">
+      <div className="w-full h-[50dvh] lg:h-full bg-background p-6 space-y-8 relative overflow-y-auto col-span-6 lg:col-span-7 xl:col-span-6 2xl:col-span-6">
 
         <div className="w-full flex items-start justify-between">
           <div className="w-full flex flex-col space-y-1">
@@ -187,7 +187,7 @@ export default function Home() {
             <div className="space-y-3">
               <Label>Shape Type</Label>
               <RadioGroup
-                className="grid grid-cols-4 gap-1 border p-1"
+                className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-4 gap-1 border p-1"
                 value={patternProps.shape}
                 onValueChange={(value) => handleInputChange("shape", value)}
               >
@@ -396,7 +396,7 @@ export default function Home() {
 
       </div>
 
-      <div className="w-full h-full bg-background p-6 relative col-span-6 lg:col-span-5 xl:col-span-6 2xl:col-span-6">
+      <div className="w-full h-[50dvh] lg:h-full bg-background p-6 relative col-span-6 lg:col-span-5 xl:col-span-6 2xl:col-span-6">
         <div className="w-full h-full absolute top-0 left-0 right-0 bottom-0 overflow-hidden">
           <SVGPattern
             patternId="preview-pattern"
@@ -408,7 +408,7 @@ export default function Home() {
             getRawSVG={setRawSVG}
           />
         </div>
-        <div className="w-80 absolute right-6 bottom-6 z-20 bg-background border">
+        <div className="w-auto lg:w-80 absolute left-6 lg:left-auto right-6 bottom-6 z-20 bg-background border">
           <Tabs defaultValue="raw" className="w-full">
             <TabsList className="w-full h-auto rounded-none border-b border-border bg-transparent p-0">
               <TabsTrigger
@@ -424,14 +424,14 @@ export default function Home() {
                 Component
               </TabsTrigger>
             </TabsList>
-            <TabsContent value="raw" className="p-6 pb-3 mt-0">
-              <Textarea value={rawSVG} readOnly className="font-mono text-xs" rows={12} />
+            <TabsContent value="raw" className="p-6 pb-0 mt-0">
+              <Textarea value={rawSVG} readOnly className="font-mono text-xs" rows={5} />
             </TabsContent>
-            <TabsContent value="component" className="p-6 pb-3 mt-0">
-              <Textarea ref={codeRef} value={generateCode()} readOnly className="font-mono text-xs" rows={12} />
+            <TabsContent value="component" className="p-6 pb-0 mt-0">
+              <Textarea ref={codeRef} value={generateCode()} readOnly className="font-mono text-xs" rows={5} />
             </TabsContent>
           </Tabs>
-          <div className="w-full flex items-center gap-3 p-6 pt-0">
+          <div className="w-full flex items-center gap-3 p-6 pt-3">
             <Button className="w-full" variant="default" onClick={copyToClipboard}>{copyButtonText}</Button>
             <Button className="w-full" variant="outline" onClick={resetControls}>Reset</Button>
           </div>

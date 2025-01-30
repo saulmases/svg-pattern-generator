@@ -15,6 +15,7 @@ export type ShapeType =
   | "zigzag"
   | "spiral"
   | "arrow"
+  | "squircle"
   | "custom"
 
 interface SVGPatternProps {
@@ -230,6 +231,26 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
             strokeLinejoin="round"
           />
         )
+      case "squircle":
+        const squircleRadius = shapeSize / 2;  // Controls the roundness of the squircle's corners
+        const squircleWidth = size;  // Controls the overall width and height of the squircle
+
+        return (
+          <path
+            d={`
+                M${squircleWidth / 2},0
+                C${squircleWidth - squircleRadius},0 ${squircleWidth},${squircleRadius} ${squircleWidth},${squircleWidth / 2}
+                C${squircleWidth},${squircleWidth - squircleRadius} ${squircleWidth - squircleRadius},${squircleWidth} ${squircleWidth / 2},${squircleWidth}
+                C${squircleRadius},${squircleWidth} 0,${squircleWidth - squircleRadius} 0,${squircleWidth / 2}
+                C0,${squircleRadius} ${squircleRadius},0 ${squircleWidth / 2},0
+              `}
+            className={`stroke-current ${shapeColor}`}
+            fill="none"
+            strokeWidth={strokeWidth}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        );
       case "custom":
         return (
           <svg viewBox={`0 0 ${size} ${size}`} width={size} height={size} preserveAspectRatio="xMidYMid meet">

@@ -8,7 +8,6 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Textarea } from "@/components/ui/textarea";
-// import { toast } from "@/components/ui/use-toast";
 import { useSliderWithInput } from "@/hooks/use-slider-with-input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
@@ -27,6 +26,7 @@ import {
   Slash,
   Pentagon,
   Asterisk,
+  Squircle,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { backgroundColors, shapeColors } from "@/lib/utils";
@@ -37,14 +37,15 @@ const shapeOptions = [
   { value: "square", label: "Square", Icon: Square },
   { value: "circle", label: "Circle", Icon: Circle },
   { value: "triangle", label: "Triangle", Icon: Triangle },
-  { value: "star", label: "Star", Icon: Star },
-  { value: "plus", label: "Plus", Icon: Cross },
   { value: "pentagon", label: "Pentagon", Icon: Pentagon },
   { value: "hexagon", label: "Hexagon", Icon: Hexagon },
   { value: "octagon", label: "Octagon", Icon: Octagon },
-  { value: "wave", label: "Wave", Icon: Wave },
+  { value: "squircle", label: "Squircle", Icon: Squircle },
+  { value: "plus", label: "Plus", Icon: Cross },
+  { value: "star", label: "Star", Icon: Star },
   { value: "zigzag", label: "Zigzag", Icon: Zap },
   { value: "spiral", label: "Spiral", Icon: Shell },
+  { value: "wave", label: "Wave", Icon: Wave },
   { value: "asterisk", label: "Asterisk", Icon: Asterisk },
   { value: "arrow", label: "Arrow", Icon: ArrowUp },
   { value: "custom", label: "Custom", Icon: PenTool },
@@ -66,13 +67,13 @@ export default function Home() {
   const patternSize = useSliderWithInput({
     minValue: 1,
     maxValue: 200,
-    initialValue: [20],
+    initialValue: [50],
     step: 1
   })
   const shapeSize = useSliderWithInput({
     minValue: 1,
     maxValue: patternSize.sliderValue[0],
-    initialValue: [10],
+    initialValue: [40],
     step: 1,
   })
   const rotation = useSliderWithInput({
@@ -123,11 +124,11 @@ export default function Home() {
       customPath: "M0,0 L10,10 L20,0 Z",
     });
 
-    patternSize.setSliderValue([20]);
-    patternSize.setInputValues(["20"]);
+    patternSize.setSliderValue([50]);
+    patternSize.setInputValues(["50"]);
 
-    shapeSize.setSliderValue([10]);
-    shapeSize.setInputValues(["10"]);
+    shapeSize.setSliderValue([40]);
+    shapeSize.setInputValues(["40"]);
 
     rotation.setSliderValue([45]);
     rotation.setInputValues(["45"]);
@@ -166,7 +167,7 @@ export default function Home() {
   // Styles
   const styles = {
     radio: {
-      label: "cursor-pointer flex flex-col items-center justify-between border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary",
+      label: "cursor-pointer flex flex-col items-center justify-between border border-transparent bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary",
     },
     slider: {
       thumb: "cursor-pointer grow [&>:last-child>span]:h-6 [&>:last-child>span]:w-2.5 [&>:last-child>span]:border-[3px] [&>:last-child>span]:border-background [&>:last-child>span]:bg-primary [&>:last-child>span]:ring-offset-0",
@@ -193,7 +194,7 @@ export default function Home() {
             <div className="space-y-3">
               <Label>Shape Type</Label>
               <RadioGroup
-                className="grid grid-cols-3 gap-2"
+                className="grid grid-cols-4 gap-1 border p-1"
                 value={patternProps.shape}
                 onValueChange={(value) => handleInputChange("shape", value)}
               >
@@ -205,7 +206,7 @@ export default function Home() {
                       className={styles.radio.label}
                     >
                       <item.Icon className="mb-2 h-8 w-8 stroke-1" />
-                      <span className="text-xs">{item.label}</span>
+                      <span className="text-[11px]">{item.label}</span>
                     </Label>
                   </div>
                 ))}

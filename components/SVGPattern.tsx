@@ -6,6 +6,8 @@ export type ShapeType =
   | "square"
   | "triangle"
   | "star"
+  | "asterisk"
+  | "pentagon"
   | "hexagon"
   | "octagon"
   | "plus"
@@ -64,6 +66,69 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
             className={`fill-current ${shapeColor}`}
           />
         )
+      case "asterisk":
+        const center = size / 2;
+        const armLength = shapeSize * 1.5; // Adjust how far the arms extend from the center
+        const crossArmLength = shapeSize; // Adjust cross-length for "arms" of the sparkle
+
+        return (
+          <>
+            {/* Vertical arm */}
+            <path
+              d={`M${center},${center - armLength} L${center},${center + armLength}`}
+              className={`stroke-current ${shapeColor}`}
+              fill="none"
+              strokeWidth={strokeWidth}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {/* Horizontal arm */}
+            <path
+              d={`M${center - armLength},${center} L${center + armLength},${center}`}
+              className={`stroke-current ${shapeColor}`}
+              fill="none"
+              strokeWidth={strokeWidth}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {/* Top-left arm */}
+            <path
+              d={`M${center - crossArmLength},${center - crossArmLength} L${center + crossArmLength},${center + crossArmLength}`}
+              className={`stroke-current ${shapeColor}`}
+              fill="none"
+              strokeWidth={strokeWidth}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {/* Top-right arm */}
+            <path
+              d={`M${center + crossArmLength},${center - crossArmLength} L${center - crossArmLength},${center + crossArmLength}`}
+              className={`stroke-current ${shapeColor}`}
+              fill="none"
+              strokeWidth={strokeWidth}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {/* Bottom-left arm */}
+            <path
+              d={`M${center - crossArmLength},${center + crossArmLength} L${center + crossArmLength},${center - crossArmLength}`}
+              className={`stroke-current ${shapeColor}`}
+              fill="none"
+              strokeWidth={strokeWidth}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {/* Bottom-right arm */}
+            <path
+              d={`M${center + crossArmLength},${center + crossArmLength} L${center - crossArmLength},${center - crossArmLength}`}
+              className={`stroke-current ${shapeColor}`}
+              fill="none"
+              strokeWidth={strokeWidth}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </>
+        );
       case "star":
         const starPoints = 5
         const innerRadius = shapeSize / 4
@@ -77,6 +142,15 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
           starPointsStr += `${x},${y} `
         }
         return <polygon points={starPointsStr.trim()} className={`fill-current ${shapeColor}`} />
+      case "pentagon":
+        const pentagonPoints = []
+        for (let i = 0; i < 5; i++) {
+          const angle = (i * Math.PI * 2) / 5
+          const x = size / 2 + (shapeSize / 2) * Math.cos(angle)
+          const y = size / 2 + (shapeSize / 2) * Math.sin(angle)
+          pentagonPoints.push(`${x},${y}`)
+        }
+        return <polygon points={pentagonPoints.join(" ")} className={`fill-current ${shapeColor}`} />
       case "hexagon":
         const hexPoints = []
         for (let i = 0; i < 6; i++) {

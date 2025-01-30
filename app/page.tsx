@@ -25,6 +25,8 @@ import {
   Cross,
   ArrowUp,
   Slash,
+  Pentagon,
+  Asterisk,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { backgroundColors, shapeColors } from "@/lib/utils";
@@ -36,12 +38,14 @@ const shapeOptions = [
   { value: "circle", label: "Circle", Icon: Circle },
   { value: "triangle", label: "Triangle", Icon: Triangle },
   { value: "star", label: "Star", Icon: Star },
+  { value: "plus", label: "Plus", Icon: Cross },
+  { value: "pentagon", label: "Pentagon", Icon: Pentagon },
   { value: "hexagon", label: "Hexagon", Icon: Hexagon },
   { value: "octagon", label: "Octagon", Icon: Octagon },
-  { value: "plus", label: "Plus", Icon: Cross },
   { value: "wave", label: "Wave", Icon: Wave },
   { value: "zigzag", label: "Zigzag", Icon: Zap },
   { value: "spiral", label: "Spiral", Icon: Shell },
+  { value: "asterisk", label: "Asterisk", Icon: Asterisk },
   { value: "arrow", label: "Arrow", Icon: ArrowUp },
   { value: "custom", label: "Custom", Icon: PenTool },
 ]
@@ -165,7 +169,7 @@ export default function Home() {
       label: "cursor-pointer flex flex-col items-center justify-between border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary",
     },
     slider: {
-      thumb: "grow [&>:last-child>span]:h-6 [&>:last-child>span]:w-2.5 [&>:last-child>span]:border-[3px] [&>:last-child>span]:border-background [&>:last-child>span]:bg-primary [&>:last-child>span]:ring-offset-0",
+      thumb: "cursor-pointer grow [&>:last-child>span]:h-6 [&>:last-child>span]:w-2.5 [&>:last-child>span]:border-[3px] [&>:last-child>span]:border-background [&>:last-child>span]:bg-primary [&>:last-child>span]:ring-offset-0",
     }
   }
 

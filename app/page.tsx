@@ -27,9 +27,17 @@ import {
   Pentagon,
   Asterisk,
   Squircle,
+  Heart,
+  Moon,
+  Sparkle,
+  Gem,
+  Bone,
+  Cloud,
+  Droplet,
+  Flower,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { backgroundColors, shapeColors } from "@/lib/utils";
+import { backgroundColors, shapeFillColors, shapeColors } from "@/lib/utils";
 import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -44,11 +52,19 @@ const shapeOptions = [
   { value: "squircle", label: "Squircle", Icon: Squircle },
   { value: "plus", label: "Plus", Icon: Cross },
   { value: "star", label: "Star", Icon: Star },
-  { value: "zigzag", label: "Zigzag", Icon: Zap },
+  { value: "heart", label: "Heart", Icon: Heart },
+  { value: "moon", label: "Moon", Icon: Moon },
+  { value: "flower", label: "Flower", Icon: Flower },
+  { value: "sparkle", label: "Sparkle", Icon: Sparkle },
+  { value: "diamond", label: "Diamond", Icon: Gem },
+  { value: "bone", label: "Bone", Icon: Bone },
+  { value: "cloud", label: "Cloud", Icon: Cloud },
+  { value: "droplet", label: "Droplet", Icon: Droplet },
   { value: "spiral", label: "Spiral", Icon: Shell },
   { value: "wave", label: "Wave", Icon: Wave },
-  { value: "asterisk", label: "Asterisk", Icon: Asterisk },
+  { value: "zigzag", label: "Zigzag", Icon: Zap },
   { value: "arrow", label: "Arrow", Icon: ArrowUp },
+  { value: "asterisk", label: "Asterisk", Icon: Asterisk },
   { value: "custom", label: "Custom", Icon: PenTool },
 ]
 
@@ -56,12 +72,14 @@ export default function Home() {
   const [patternProps, setPatternProps] = useState<{
     shape: ShapeType
     backgroundColor: string
+    shapeFillColor: string
     shapeColor: string
     customPath: string
   }>({
     shape: "line",
     backgroundColor: "bg-background",
-    shapeColor: "text-border",
+    shapeFillColor: "fill-border/40",
+    shapeColor: "stroke-border",
     customPath: "M0,0 L10,10 L20,0 Z",
   })
 
@@ -76,7 +94,7 @@ export default function Home() {
   const shapeSize = useSliderWithInput({
     minValue: 1,
     maxValue: patternSize.sliderValue[0],
-    initialValue: [40],
+    initialValue: [30],
     step: 1,
   })
   const rotation = useSliderWithInput({
@@ -86,7 +104,7 @@ export default function Home() {
     step: 5,
   })
   const strokeWidth = useSliderWithInput({
-    minValue: 1,
+    minValue: 0,
     maxValue: 10,
     initialValue: [2],
     step: 1
@@ -112,6 +130,7 @@ export default function Home() {
   shapeSize={${shapeSize.sliderValue[0]}}
   size={${patternSize.sliderValue[0]}}
   backgroundColor="${patternProps.backgroundColor}"
+  shapeFillColor="${patternProps.shapeFillColor}"
   shapeColor="${patternProps.shapeColor}"
   rotation={${rotation.sliderValue[0]}}
   strokeWidth={${strokeWidth.sliderValue[0]}}
@@ -123,7 +142,8 @@ export default function Home() {
     setPatternProps({
       shape: "line",
       backgroundColor: "bg-background",
-      shapeColor: "text-border",
+      shapeFillColor: "fill-border/40",
+      shapeColor: "stroke-border",
       customPath: "M0,0 L10,10 L20,0 Z",
     });
 
@@ -160,7 +180,7 @@ export default function Home() {
   // Styles
   const styles = {
     radio: {
-      label: "cursor-pointer flex flex-col items-center justify-between border border-transparent bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary",
+      label: "cursor-pointer flex flex-col items-center justify-between border border-transparent bg-popover p-3 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary",
     },
     slider: {
       thumb: "cursor-pointer grow [&>:last-child>span]:h-6 [&>:last-child>span]:w-2.5 [&>:last-child>span]:border-[3px] [&>:last-child>span]:border-background [&>:last-child>span]:bg-primary [&>:last-child>span]:ring-offset-0",
@@ -187,7 +207,7 @@ export default function Home() {
             <div className="space-y-3">
               <Label>Shape Type</Label>
               <RadioGroup
-                className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-4 gap-1 border p-1"
+                className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-4 gap-0 border p-1"
                 value={patternProps.shape}
                 onValueChange={(value) => handleInputChange("shape", value)}
               >
@@ -198,7 +218,7 @@ export default function Home() {
                       htmlFor={`${id}-${item.value}`}
                       className={styles.radio.label}
                     >
-                      <item.Icon className="mb-2 h-8 w-8 stroke-1" />
+                      <item.Icon className="mb-2 h-6 w-6 stroke-1" />
                       <span className="text-[11px]">{item.label}</span>
                     </Label>
                   </div>
@@ -289,7 +309,7 @@ export default function Home() {
                   className={styles.slider.thumb}
                   value={strokeWidth.sliderValue}
                   onValueChange={strokeWidth.handleSliderChange}
-                  min={1}
+                  min={0}
                   max={10}
                   step={1}
                   aria-label="Stroke Width"
@@ -366,12 +386,12 @@ export default function Home() {
             </div>
 
             <div className="space-y-2">
-              <Label>Shape Color</Label>
+              <Label>Shape Stroke Color</Label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button variant="outline" className="w-full h-10 pr-2 flex items-center justify-between space-x-2">
-                    <span>{patternProps.shapeColor.replace("text-", "")}</span>
-                    <div className={`${patternProps.shapeColor.replace("text-", "bg-")} w-6 h-6 border`}></div>
+                    <span>{patternProps.shapeColor.replace("stroke-", "")}</span>
+                    <div className={`${patternProps.shapeColor.replace("stroke-", "bg-")} w-6 h-6 border`}></div>
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto max-h-40 p-1">
@@ -380,8 +400,33 @@ export default function Home() {
                       {row.map((color) => (
                         <Button
                           key={color}
-                          className={`w-6 h-6 flex p-0 rounded-none ${color.replace("text-", "bg-")}`}
+                          className={`w-6 h-6 flex p-0 rounded-none ${color.replace("stroke-", "bg-")}`}
                           onClick={() => handleInputChange("shapeColor", color)}
+                        />
+                      ))}
+                    </div>
+                  ))}
+                </PopoverContent>
+              </Popover>
+            </div>
+
+            <div className="space-y-2">
+              <Label>Shape Fill Color</Label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" className="w-full h-10 pr-2 flex items-center justify-between space-x-2">
+                    <span>{patternProps.shapeFillColor.replace("fill-", "")}</span>
+                    <div className={`${patternProps.shapeFillColor.replace("fill-", "bg-")} w-6 h-6 border`}></div>
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto max-h-40 p-1">
+                  {shapeFillColors.map((row, rowIndex) => (
+                    <div key={rowIndex} className="flex p-0.5">
+                      {row.map((color) => (
+                        <Button
+                          key={color}
+                          className={`w-6 h-6 flex p-0 rounded-none ${color.replace("fill-", "bg-")}`}
+                          onClick={() => handleInputChange("shapeFillColor", color)}
                         />
                       ))}
                     </div>

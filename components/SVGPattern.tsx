@@ -276,7 +276,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
                 L ${size / 2 + arrowHeadWidth / 2} ${size / 2 - shapeSize / 2 + arrowHeadHeight}
               `}
             strokeWidth={strokeWidth}
-            className={`${shapeFillColor} ${shapeColor}`}
+            className={`fill-none ${shapeFillColor} ${shapeColor}`}
             strokeLinecap="round"
             strokeLinejoin="round"
           />

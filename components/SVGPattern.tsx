@@ -64,7 +64,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
             x2="0"
             y2={size}
             strokeWidth={strokeWidth}
-            className={`fill-current stroke-current ${shapeFillColor} ${shapeColor}`}
+            className={`${shapeFillColor} ${shapeColor}`}
           />
         )
       case "circle":
@@ -85,7 +85,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
             width={shapeSize}
             height={shapeSize}
             strokeWidth={strokeWidth}
-            className={`fill-current stroke-current ${shapeFillColor} ${shapeColor}`}
+            className={`${shapeFillColor} ${shapeColor}`}
           />
         )
       case "triangle":
@@ -94,7 +94,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
           <polygon
             points={`${size / 2},${(size - height) / 2} ${(size - shapeSize) / 2},${(size + height) / 2} ${(size + shapeSize) / 2},${(size + height) / 2}`}
             strokeWidth={strokeWidth}
-            className={`fill-current stroke-current ${shapeFillColor} ${shapeColor}`}
+            className={`${shapeFillColor} ${shapeColor}`}
           />
         )
       case "asterisk":
@@ -107,42 +107,42 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
             <path
               d={`M${center},${center - armLength} L${center},${center + armLength}`}
               strokeWidth={strokeWidth}
-              className={`fill-none stroke-current ${shapeFillColor} ${shapeColor}`}
+              className={`${shapeFillColor} ${shapeColor}`}
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
               d={`M${center - armLength},${center} L${center + armLength},${center}`}
               strokeWidth={strokeWidth}
-              className={`fill-none stroke-current ${shapeFillColor} ${shapeColor}`}
+              className={`${shapeFillColor} ${shapeColor}`}
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
               d={`M${center - crossArmLength},${center - crossArmLength} L${center + crossArmLength},${center + crossArmLength}`}
               strokeWidth={strokeWidth}
-              className={`fill-none stroke-current ${shapeFillColor} ${shapeColor}`}
+              className={`${shapeFillColor} ${shapeColor}`}
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
               d={`M${center + crossArmLength},${center - crossArmLength} L${center - crossArmLength},${center + crossArmLength}`}
               strokeWidth={strokeWidth}
-              className={`fill-none stroke-current ${shapeFillColor} ${shapeColor}`}
+              className={`${shapeFillColor} ${shapeColor}`}
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
               d={`M${center - crossArmLength},${center + crossArmLength} L${center + crossArmLength},${center - crossArmLength}`}
               strokeWidth={strokeWidth}
-              className={`fill-none stroke-current ${shapeFillColor} ${shapeColor}`}
+              className={`${shapeFillColor} ${shapeColor}`}
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
               d={`M${center + crossArmLength},${center + crossArmLength} L${center - crossArmLength},${center - crossArmLength}`}
               strokeWidth={strokeWidth}
-              className={`fill-none stroke-current ${shapeFillColor} ${shapeColor}`}
+              className={`${shapeFillColor} ${shapeColor}`}
               strokeLinecap="round"
               strokeLinejoin="round"
             />
@@ -164,7 +164,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
           <polygon
             points={starPointsStr.trim()}
             strokeWidth={strokeWidth}
-            className={`fill-current stroke-current ${shapeFillColor} ${shapeColor}`}
+            className={`${shapeFillColor} ${shapeColor}`}
             strokeLinecap="round"
             strokeLinejoin="round"
           />
@@ -180,7 +180,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
         return (
           <polygon points={pentagonPoints.join(" ")}
             strokeWidth={strokeWidth}
-            className={`fill-current stroke-current ${shapeFillColor} ${shapeColor}`}
+            className={`${shapeFillColor} ${shapeColor}`}
           />
         )
       case "hexagon":
@@ -195,7 +195,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
           <polygon
             points={hexPoints.join(" ")}
             strokeWidth={strokeWidth}
-            className={`fill-current stroke-current ${shapeFillColor} ${shapeColor}`}
+            className={`${shapeFillColor} ${shapeColor}`}
           />
         )
       case "octagon":
@@ -210,7 +210,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
           <polygon
             points={octPoints.join(" ")}
             strokeWidth={strokeWidth}
-            className={`fill-current stroke-current ${shapeFillColor} ${shapeColor}`}
+            className={`${shapeFillColor} ${shapeColor}`}
           />
         )
       case "plus":
@@ -219,7 +219,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
           <path
             d={`M${(size - plusWidth) / 2},${(size - shapeSize) / 2}h${plusWidth}v${(shapeSize - plusWidth) / 2}h${(shapeSize - plusWidth) / 2}v${plusWidth}h-${(shapeSize - plusWidth) / 2}v${(shapeSize - plusWidth) / 2}h-${plusWidth}v-${(shapeSize - plusWidth) / 2}h-${(shapeSize - plusWidth) / 2}v-${plusWidth}h${(shapeSize - plusWidth) / 2}z`}
             strokeWidth={strokeWidth}
-            className={`fill-current stroke-current ${shapeFillColor} ${shapeColor}`}
+            className={`${shapeFillColor} ${shapeColor}`}
           />
         )
       case "wave":
@@ -229,7 +229,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
           <path
             d={`M0 ${size / 2} Q${size / 4} ${size / 2 - waveAmplitude}, ${size / 2} ${size / 2} T${size} ${size / 2}`}
             strokeWidth={strokeWidth}
-            className={`fill-none stroke-current ${shapeFillColor} ${shapeColor}`}
+            className={`fill-none ${shapeFillColor} ${shapeColor}`}
             strokeLinecap="round"
             strokeLinejoin="round"
           />
@@ -239,7 +239,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
           <polyline
             points={`0,${size / 2} ${size / 4},${(size - shapeSize) / 2} ${size / 2},${size / 2} ${(3 * size) / 4},${(size + shapeSize) / 2} ${size},${size / 2}`}
             strokeWidth={strokeWidth}
-            className={`fill-none stroke-current ${shapeFillColor} ${shapeColor}`}
+            className={`fill-none ${shapeFillColor} ${shapeColor}`}
             strokeLinecap="round"
             strokeLinejoin="round"
           />
@@ -259,7 +259,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
           <path
             d={spiralPath}
             strokeWidth={strokeWidth}
-            className={`fill-none stroke-current ${shapeFillColor} ${shapeColor}`}
+            className={`fill-none ${shapeFillColor} ${shapeColor}`}
           />
         )
       case "arrow":
@@ -276,7 +276,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
                 L ${size / 2 + arrowHeadWidth / 2} ${size / 2 - shapeSize / 2 + arrowHeadHeight}
               `}
             strokeWidth={strokeWidth}
-            className={`fill-none stroke-current ${shapeFillColor} ${shapeColor}`}
+            className={`${shapeFillColor} ${shapeColor}`}
             strokeLinecap="round"
             strokeLinejoin="round"
           />
@@ -284,7 +284,6 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
       case "squircle":
         const squircleRadius = shapeSize / 2;
         const squircleWidth = size;
-
         return (
           <path
             d={`
@@ -295,7 +294,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
                 C0,${squircleRadius} ${squircleRadius},0 ${squircleWidth / 2},0
               `}
             strokeWidth={strokeWidth}
-            className={`fill-current stroke-current ${shapeFillColor} ${shapeColor}`}
+            className={`${shapeFillColor} ${shapeColor}`}
             strokeLinecap="round"
             strokeLinejoin="round"
           />
@@ -324,14 +323,14 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
               l ${7 * (shapeSize / 24)} ${7 * (shapeSize / 24)}
               Z
             `}
-            className={`fill-current stroke-current ${shapeFillColor} ${shapeColor}`}
+            className={`${shapeFillColor} ${shapeColor}`}
             strokeWidth={strokeWidth}
             strokeLinecap="round"
             strokeLinejoin="round"
           />
         );
 
-      case "flower": // Replace with a meaningful name
+      case "flower":
         return (
           <>
             {/* Outer Circle */}
@@ -343,7 +342,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
                 A ${4.5 * (shapeSize / 24)} ${4.5 * (shapeSize / 24)} 0 1 1 ${16.5 * (shapeSize / 24)} ${12 * (shapeSize / 24)}
                 A ${4.5 * (shapeSize / 24)} ${4.5 * (shapeSize / 24)} 0 1 1 ${12 * (shapeSize / 24)} ${16.5 * (shapeSize / 24)} Z
               `}
-              className={`fill-current stroke-current ${shapeFillColor} ${shapeColor}`}
+              className={`${shapeFillColor} ${shapeColor}`}
               strokeWidth={strokeWidth}
             />
             {/* Circle */}
@@ -351,7 +350,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
               cx={12 * (shapeSize / 24)}
               cy={12 * (shapeSize / 24)}
               r={3 * (shapeSize / 24)}
-              className={`fill-current stroke-current ${shapeFillColor} ${shapeColor}`}
+              className={`${shapeFillColor} ${shapeColor}`}
               strokeWidth={strokeWidth}
             />
             {/* Vertical Line */}
@@ -360,7 +359,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
                 M ${12 * (shapeSize / 24)} ${7.5 * (shapeSize / 24)}
                 V ${9 * (shapeSize / 24)}
               `}
-              className={`stroke-current ${shapeColor} fill-none`}
+              className={`fill-none ${shapeFillColor} ${shapeColor}`}
               strokeWidth={strokeWidth}
             />
             {/* Horizontal Line */}
@@ -369,7 +368,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
                 M ${7.5 * (shapeSize / 24)} ${12 * (shapeSize / 24)}
                 H ${9 * (shapeSize / 24)}
               `}
-              className={`stroke-current ${shapeColor} fill-none`}
+              className={`fill-none ${shapeFillColor} ${shapeColor}`}
               strokeWidth={strokeWidth}
             />
             <path
@@ -377,7 +376,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
                 M ${16.5 * (shapeSize / 24)} ${12 * (shapeSize / 24)}
                 H ${15 * (shapeSize / 24)}
               `}
-              className={`stroke-current ${shapeColor} fill-none`}
+              className={`fill-none ${shapeFillColor} ${shapeColor}`}
               strokeWidth={strokeWidth}
             />
             {/* Vertical Lines */}
@@ -386,7 +385,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
                 M ${12 * (shapeSize / 24)} ${16.5 * (shapeSize / 24)}
                 V ${15 * (shapeSize / 24)}
               `}
-              className={`stroke-current ${shapeColor} fill-none`}
+              className={`fill-none ${shapeFillColor} ${shapeColor}`}
               strokeWidth={strokeWidth}
             />
             {/* Diagonal Lines */}
@@ -395,7 +394,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
                 M ${8 * (shapeSize / 24)} ${8 * (shapeSize / 24)}
                 L ${9.88 * (shapeSize / 24)} ${9.88 * (shapeSize / 24)}
               `}
-              className={`stroke-current ${shapeColor} fill-none`}
+              className={`fill-none ${shapeFillColor} ${shapeColor}`}
               strokeWidth={strokeWidth}
             />
             <path
@@ -403,7 +402,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
                 M ${14.12 * (shapeSize / 24)} ${9.88 * (shapeSize / 24)}
                 L ${16 * (shapeSize / 24)} ${8 * (shapeSize / 24)}
               `}
-              className={`stroke-current ${shapeColor} fill-none`}
+              className={`fill-none ${shapeFillColor} ${shapeColor}`}
               strokeWidth={strokeWidth}
             />
             <path
@@ -411,7 +410,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
                 M ${8 * (shapeSize / 24)} ${16 * (shapeSize / 24)}
                 L ${9.88 * (shapeSize / 24)} ${14.12 * (shapeSize / 24)}
               `}
-              className={`stroke-current ${shapeColor} fill-none`}
+              className={`fill-none ${shapeFillColor} ${shapeColor}`}
               strokeWidth={strokeWidth}
             />
             <path
@@ -419,7 +418,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
                 M ${14.12 * (shapeSize / 24)} ${14.12 * (shapeSize / 24)}
                 L ${16 * (shapeSize / 24)} ${16 * (shapeSize / 24)}
               `}
-              className={`stroke-current ${shapeColor} fill-none`}
+              className={`fill-none ${shapeFillColor} ${shapeColor}`}
               strokeWidth={strokeWidth}
             />
           </>
@@ -433,7 +432,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
               A ${9 * shapeSize / 16} ${9 * shapeSize / 16} 0 1 1 ${size / 2},${(size - shapeSize) / 2} 
             `}
             strokeWidth={strokeWidth}
-            className={`fill-current stroke-current ${shapeFillColor} ${shapeColor}`}
+            className={`${shapeFillColor} ${shapeColor}`}
             strokeLinecap="round"
             strokeLinejoin="round"
           />
@@ -461,7 +460,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
               Z
             `}
             strokeWidth={strokeWidth}
-            className={`fill-current stroke-current ${shapeFillColor} ${shapeColor}`}
+            className={`${shapeFillColor} ${shapeColor}`}
             strokeLinecap="round"
             strokeLinejoin="round"
           />
@@ -478,7 +477,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
                 L ${2 * (shapeSize / 24)} ${9 * (shapeSize / 24)}
                 Z
               `}
-              className={`fill-current stroke-current ${shapeFillColor} ${shapeColor}`}
+              className={`${shapeFillColor} ${shapeColor}`}
               strokeWidth={strokeWidth}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -491,7 +490,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
                 L ${16 * (shapeSize / 24)} ${9 * (shapeSize / 24)}
                 L ${13 * (shapeSize / 24)} ${3 * (shapeSize / 24)}
               `}
-              className={`stroke-current ${shapeColor} fill-none`}
+              className={`fill-none ${shapeFillColor} ${shapeColor}`}
               strokeWidth={strokeWidth}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -501,7 +500,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
                 M ${2 * (shapeSize / 24)} ${9 * (shapeSize / 24)}
                 H ${22 * (shapeSize / 24)}
               `}
-              className={`stroke-current ${shapeColor} fill-none`}
+              className={`fill-none ${shapeFillColor} ${shapeColor}`}
               strokeWidth={strokeWidth}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -537,7 +536,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
                 0 -${2.5 * (shapeSize / 24)}
               Z
             `}
-            className={`fill-current stroke-current ${shapeFillColor} ${shapeColor}`}
+            className={`${shapeFillColor} ${shapeColor}`}
             strokeWidth={strokeWidth}
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -554,7 +553,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
               a ${4.5 * (shapeSize / 24)} ${4.5 * (shapeSize / 24)} 0 1 1 0 ${9 * (shapeSize / 24)}
               Z
             `}
-            className={`fill-current stroke-current ${shapeFillColor} ${shapeColor}`}
+            className={`${shapeFillColor} ${shapeColor}`}
             strokeWidth={strokeWidth}
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -572,7 +571,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
               C ${6 * (shapeSize / 24)} ${11.1 * (shapeSize / 24)} ${5 * (shapeSize / 24)} ${13 * (shapeSize / 24)}
               ${5 * (shapeSize / 24)} ${15 * (shapeSize / 24)} a ${7 * (shapeSize / 24)} ${7 * (shapeSize / 24)} 0 0 0 ${7 * (shapeSize / 24)} ${7 * (shapeSize / 24)} z
             `}
-            className={`fill-current stroke-current ${shapeFillColor} ${shapeColor}`}
+            className={`${shapeFillColor} ${shapeColor}`}
             strokeWidth={strokeWidth}
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -584,7 +583,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
             <path
               d={customPath}
               strokeWidth={strokeWidth}
-              className={`fill-current stroke-current ${shapeFillColor} ${shapeColor}`}
+              className={`${shapeFillColor} ${shapeColor}`}
               transform={`scale(${shapeSize / size})`}
             />
           </svg>

@@ -64,7 +64,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
             x2="0"
             y2={size}
             strokeWidth={strokeWidth}
-            className={`${shapeFillColor} ${shapeColor}`}
+            className={`fill-none ${shapeColor}`}
           />
         )
       case "circle":
@@ -107,7 +107,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
             <path
               d={`M${center},${center - armLength} L${center},${center + armLength}`}
               strokeWidth={strokeWidth}
-              className={`${shapeFillColor} ${shapeColor}`}
+              className={`fill-none ${shapeColor}`}
               strokeLinecap="round"
               strokeLinejoin="round"
             />
@@ -229,7 +229,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
           <path
             d={`M0 ${size / 2} Q${size / 4} ${size / 2 - waveAmplitude}, ${size / 2} ${size / 2} T${size} ${size / 2}`}
             strokeWidth={strokeWidth}
-            className={`fill-none ${shapeFillColor} ${shapeColor}`}
+            className={`fill-none ${shapeColor}`}
             strokeLinecap="round"
             strokeLinejoin="round"
           />
@@ -239,7 +239,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
           <polyline
             points={`0,${size / 2} ${size / 4},${(size - shapeSize) / 2} ${size / 2},${size / 2} ${(3 * size) / 4},${(size + shapeSize) / 2} ${size},${size / 2}`}
             strokeWidth={strokeWidth}
-            className={`fill-none ${shapeFillColor} ${shapeColor}`}
+            className={`fill-none ${shapeColor}`}
             strokeLinecap="round"
             strokeLinejoin="round"
           />
@@ -259,7 +259,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
           <path
             d={spiralPath}
             strokeWidth={strokeWidth}
-            className={`fill-none ${shapeFillColor} ${shapeColor}`}
+            className={`fill-none ${shapeColor}`}
           />
         )
       case "arrow":
@@ -276,7 +276,7 @@ export const SVGPattern: React.FC<SVGPatternProps> = ({
                 L ${size / 2 + arrowHeadWidth / 2} ${size / 2 - shapeSize / 2 + arrowHeadHeight}
               `}
             strokeWidth={strokeWidth}
-            className={`fill-none ${shapeFillColor} ${shapeColor}`}
+            className={`fill-none ${shapeColor}`}
             strokeLinecap="round"
             strokeLinejoin="round"
           />

@@ -44,8 +44,8 @@ interface SVGPatternProps {
 export const SVGPattern: React.FC<SVGPatternProps> = ({
   patternId,
   backgroundColor = "bg-background",
-  shapeFillColor = "fill-border",
-  shapeColor = "stroke-muted",
+  shapeFillColor = "fill-border/40",
+  shapeColor = "stroke-border",
   size = 10,
   strokeWidth = 1,
   rotation = 45,

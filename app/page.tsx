@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useId, useEffect } from "react";
-import { SVGPattern, ShapeType } from "@/components/SVGPattern";
+import { SVGPattern, ShapeType } from "@/components/svg-pattern";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
@@ -78,7 +78,7 @@ export default function Home() {
   }>({
     shape: "line",
     backgroundColor: "bg-background",
-    shapeFillColor: "fill-muted",
+    shapeFillColor: "fill-background",
     shapeColor: "stroke-border",
     customPath: "M18.8235 26.3529C14.6651 26.3529 11.2941 22.9819 11.2941 18.8235C11.2941 14.6651 14.6651 11.2941 18.8235 11.2941H24.4706C27.5894 11.2941 30.1176 8.76584 30.1176 5.64706V0H18.8235C8.42758 0 0 8.42758 0 18.8235C0 29.2195 8.42758 37.6471 18.8235 37.6471H45.1765C49.3349 37.6471 52.7059 41.0181 52.7059 45.1765C52.7059 49.3349 49.3349 52.7059 45.1765 52.7059H39.5294C36.4106 52.7059 33.8824 55.2342 33.8824 58.3529V64H45.1765C55.5724 64 64 55.5724 64 45.1765C64 34.7805 55.5724 26.3529 45.1765 26.3529H18.8235Z",
   })
@@ -142,7 +142,7 @@ export default function Home() {
     setPatternProps({
       shape: "line",
       backgroundColor: "bg-background",
-      shapeFillColor: "fill-muted",
+      shapeFillColor: "fill-background",
       shapeColor: "stroke-border",
       customPath: "M18.8235 26.3529C14.6651 26.3529 11.2941 22.9819 11.2941 18.8235C11.2941 14.6651 14.6651 11.2941 18.8235 11.2941H24.4706C27.5894 11.2941 30.1176 8.76584 30.1176 5.64706V0H18.8235C8.42758 0 0 8.42758 0 18.8235C0 29.2195 8.42758 37.6471 18.8235 37.6471H45.1765C49.3349 37.6471 52.7059 41.0181 52.7059 45.1765C52.7059 49.3349 49.3349 52.7059 45.1765 52.7059H39.5294C36.4106 52.7059 33.8824 55.2342 33.8824 58.3529V64H45.1765C55.5724 64 64 55.5724 64 45.1765C64 34.7805 55.5724 26.3529 45.1765 26.3529H18.8235Z",
     });

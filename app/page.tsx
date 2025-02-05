@@ -125,7 +125,7 @@ export default function Home() {
 
   const generateCode = () => {
     return `<SVGPattern
-  patternId="my-pattern"
+  patternId="preview-pattern"
   shape="${patternProps.shape}"
   shapeSize={${shapeSize.sliderValue[0]}}
   size={${patternSize.sliderValue[0]}}
